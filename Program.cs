@@ -62,6 +62,7 @@ namespace spatial_test
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			builder.HasPostgresExtension("postgis");
+			if (Database.IsNpgsql()) builder.Entity<Place>().Property(x => x.Point).HasColumnType("geography (point)");
 		}
 	}
 }
